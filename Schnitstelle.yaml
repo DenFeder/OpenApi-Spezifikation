@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Todo List
+  version: 1.0.0
+servers:
+    - url: http://127.0.0.1:5000/
+
+paths:
+  /todo-list:
+    get:
+      description: Returns a list of all todo lists.
+      responses:
+        '200':
+          description: Succesful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parameter1:
+                    type: array
+                    description: the first parameter
+                  parameter2: 
+                    type: array
+                    description: the second parameter
+
+    post:
+      description: Adds a new todo list
+      responses:
+        '200':
+          description: Succesful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    parameter1: 
+                      type: array
+                      description: the first parameter
+                    parameter2: 
+                      type: array
+                      description: the second parameter
+  
+  /todo-list/{list_id}:
+    get:
+      description: Returns all entries of one todo lists.
+      responses:
+        '200':
+          description: Succesful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parameter1:
+                    type: string
+                    description: The first entry of requested todo list
+                  parameter2:
+                    type: string
+                    description: The first entry of requested todo list
+
+        '404':
+          description: ID not found
+  
+    delete:
+      description:  Deletes one todo list with all its entries
+      responses:
+        '200':
+          description: List succesfully deleted
+        '404':
+          description: ID not found
+        '500':
+          description:  Error while writing
+    patch:
+      description:  Updates one existing list.
+      responses:
+        '200':
+          description: List succesfully updated
+        '404':
+          description: ID not found
+        '500':
+          description:  Error while writing
+  
+  /todo-list/{list_id}/entry:
+    post:
+      description: Adds one entry to an existing lists.
+      responses:
+        '200':
+          description: List succesfully updated
+        '404':
+          description: ID not found
+
+
+                  
