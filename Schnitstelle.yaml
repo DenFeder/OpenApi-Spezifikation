@@ -23,27 +23,46 @@ paths:
                   parameter2: 
                     type: array
                     description: the second parameter
-
     post:
       description: Adds a new todo list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parameter1:
+                  type: array
+                  items:
+                    type: string
       responses:
         '200':
-          description: Succesful operation
+          description: Successful operation
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                    parameter1: 
-                      type: array
-                      description: the first parameter
-                    parameter2: 
-                      type: array
-                      description: the second parameter
+                  parameter1:
+                    type: array
+                    items:
+                      type: string
+              example:
+                parameter1:
+                  - "Task 1"
+                  - "Task 2"
+                  - "Task 3"
   
   /todo-list/{list_id}:
     get:
       description: Returns all entries of one todo lists.
+      parameters:
+        - in: path
+          name: list_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Succesful operation
@@ -64,6 +83,12 @@ paths:
   
     delete:
       description:  Deletes one todo list with all its entries
+      parameters:
+        - in: path
+          name: list_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: List succesfully deleted
@@ -71,6 +96,7 @@ paths:
           description: ID not found
         '500':
           description:  Error while writing
+
     patch:
       description:  Updates one existing list.
       responses:
@@ -84,11 +110,39 @@ paths:
   /todo-list/{list_id}/entry:
     post:
       description: Adds one entry to an existing lists.
+      parameters:
+        - in: path
+          name: list_id
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: List succesfully updated
         '404':
           description: ID not found
+  
+  /entry/{entry_id}/:
+    patch:
+      description: Updates one existing entry
+      responses:
+        '200':
+          description: entry succesfully updated
+        '404':
+          description: ID not found
+        '500':
+          description:  Error while writing
+
+    delete:
+      description: Deletes one entry in a list
+      responses:
+        '200':
+          description: entry succesfully deleted
+        '404':
+          description: ID not found
+        '500':
+          description:  Error while writing
+        
 
 
                   

@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: Parameterübergabe mit HTTP
+  version: 1.0.0
+servers: 
+  - url: http://127.0.0.1:5000/
+
+paths:
+  /get:
+    get:
+      description: Returns the user input via get method
+      responses:
+        '200':
+          description: Succesful operation
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parameter1:
+                    type: string
+                    description: the first parameter
+                  parameter2:
+                    type: string
+                    description: the second parameter
+
+  /post:
+    post:
+      description: Returns the user input via post method
+      responses:
+        '200':
+          description: Succesful operation
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parameter1:
+                    type: string
+                    description: the first parameter
+                  parameter2:
+                    type: string
+                    description: the second parameter
